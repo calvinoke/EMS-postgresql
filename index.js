@@ -16,8 +16,8 @@ app.use(
   })
 );
 
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // No need to call db() since it's already a pool instance
 // You can optionally test the connection if needed:
