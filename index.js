@@ -9,7 +9,13 @@ import authRoutes from "./routes/authRoutes.js"; // Import auth routes
 const app = express();
 const port = 8000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    credentials: true,
+  })
+);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
