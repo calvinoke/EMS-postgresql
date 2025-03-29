@@ -11,7 +11,7 @@ dotenv.config();
 export const register = async (req, res) => {
   try {
 
-    console.log("Request body:", req.body);
+    
     const { name, email, password } = req.body;
 
     // Check if user already exists

@@ -9,10 +9,23 @@ import authRoutes from "./routes/authRoutes.js"; // Import auth routes
 const app = express();
 const port = 8000;
 
+const allowedOrigins = [
+  "http://localhost:8081",      // Metro Bundler (Dev)   // Your local IP (Dev)
+  "http://10.0.2.2:8081",       // Android Emulator (Dev)
+  "file://*",                   // React Native Production (APK)
+  null                          // Some React Native requests have no origin
+];
+
 app.use(
   cors({
-    origin: "*", // Allow all origins
-    credentials: true,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: false, // If using cookies or authentication
   })
 );
 
