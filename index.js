@@ -10,11 +10,12 @@ const app = express();
 const port = 8000;
 
 const allowedOrigins = [
-  "http://localhost:8081",      // Metro Bundler (Dev)   // Your local IP (Dev)
+  "http://localhost:8081",      // Metro Bundler (Dev)
   "http://10.0.2.2:8081",       // Android Emulator (Dev)
-  "file://*",                   // React Native Production (APK)
-  null                          // Some React Native requests have no origin
+    
+  null                          // Some React Native requests might have no origin
 ];
+
 
 app.use(
   cors({
@@ -38,9 +39,15 @@ db.connect()
   .then(() => console.log('Connected to PostgreSQL'))
   .catch((err) => console.error('Error connecting to PostgreSQL:', err));
 
+
 app.use("/api", employeeRoutes);
 app.use("/api", attendanceRoutes);
 app.use("/api/auth", authRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
