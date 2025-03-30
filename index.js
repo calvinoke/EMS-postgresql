@@ -7,7 +7,7 @@ import attendanceRoutes from "./routes/attendanceRoutes.js";
 import authRoutes from "./routes/authRoutes.js"; // Import auth routes
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const allowedOrigins = [
   "http://localhost:8081",      // Metro Bundler (Dev)
@@ -17,18 +17,8 @@ const allowedOrigins = [
 ];
 
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: false, // If using cookies or authentication
-  })
-);
+app.use(cors({ origin: "*", credentials: true }));
+
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
