@@ -17,7 +17,15 @@ const port = process.env.PORT || 8000;
 //];
 
 
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({
+  origin: [
+    'http://localhost:8081',           // For local development (Expo or React Native development)
+    'https://ems-5ypa.onrender.com', // Your deployed backend URL (e.g., Render, Heroku, etc.)
+     // If you want to specifically allow requests from a known APK URL (not common for React Native)
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 
 app.use(express.json());
