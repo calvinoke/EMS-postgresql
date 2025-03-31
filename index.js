@@ -9,12 +9,12 @@ import authRoutes from "./routes/authRoutes.js"; // Import auth routes
 const app = express();
 const port = process.env.PORT || 8000;
 
-const allowedOrigins = [
-  "http://localhost:8081",      // Metro Bundler (Dev)
-  "http://10.0.2.2:8081",       // Android Emulator (Dev)
+//const allowedOrigins = [
+ // "http://localhost:8081",      // Metro Bundler (Dev)
+  //"http://10.0.2.2:8081",       // Android Emulator (Dev)
     
-  null                          // Some React Native requests might have no origin
-];
+ // null                          // Some React Native requests might have no origin
+//];
 
 
 app.use(cors({ origin: "*", credentials: true }));
