@@ -6,10 +6,13 @@ dotenv.config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false, // Use SSL if required
+  ssl: {
+    rejectUnauthorized: false, // Required for self-signed certs (disable validation)
+  },
 });
 
 export default pool;
+
 
 //  Test Database Connection (Optional)
 //port const db = async () => {
