@@ -15,11 +15,13 @@ const port = process.env.PORT || 3001;
 // CORS setup
 app.use(cors({
   origin: [
-    'http://localhost:8081',           // For local development (Expo or React Native development)
+    'http://localhost:8081', 
+    'http://localhost:8082',           // For local development (Expo or React Native development)
     'https://ems-5ypa.onrender.com',   // Your deployed backend URL (e.g., Render, Heroku, etc.)
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Allow cookies to be sent if needed (for sessions, tokens, etc.)
 }));
 
 // Middleware setup
