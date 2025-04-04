@@ -84,20 +84,21 @@ const attendanceTables = async () => {
       employee_id VARCHAR(50) NOT NULL,
       employee_name VARCHAR(255) NOT NULL,
       date DATE NOT NULL,
-      status VARCHAR(50) NOT NULL CHECK (status IN ('Present', 'Halfday', 'Absent')),
+      status VARCHAR(50) NOT NULL CHECK (status IN ('Present', 'Halfday', 'Absent', 'Holiday')),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       CONSTRAINT unique_employee_date UNIQUE (employee_id, date)
     );
   `;
-  
+
   try {
     await pool.query(query);
-    console.log("Attendance table created successfully");
+    console.log("attendance table created successfully");
   } catch (error) {
     console.error("Error creating attendance table:", error);
   }
 };
+
 
 // Call table creation functions
 const createTables = async () => {
