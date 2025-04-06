@@ -93,9 +93,10 @@ export const updateAttendanceByEmployeeAndDate = async (req, res) => {
 export const deleteAttendance = async (req, res) => {
   try {
     const { id } = req.params;
+    const { date } = req.query;
     const result = await pool.query(
-      "DELETE FROM attendance WHERE employee_id = $1 RETURNING *",
-      [id]
+      "DELETE FROM attendance WHERE employee_id = $1 AND date = $2 RETURNING *",
+      [id, date]
     );
 
     if (result.rows.length === 0) {
